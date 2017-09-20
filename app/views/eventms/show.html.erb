@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @eventm.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @eventm.description %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @eventm.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @eventm.phone %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @eventm.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @eventm.end_time %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @eventm.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @eventm.longitude %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @eventm.owner_id %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@eventm) %> |
+<%= link_to 'Back', events_path %>

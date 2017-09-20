@@ -1,0 +1,2 @@
+class Eventm < ApplicationRecord
+end

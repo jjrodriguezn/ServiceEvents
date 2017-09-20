@@ -1,0 +1,19 @@
+version: '2'
+services:
+  ms_create_events_db:
+    image: mysql
+    ports:
+      - "3311:3311"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_USER: arqsoft
+      MYSQL_PASSWORD: 123
+      MYSQL_DATABASE: create_events
+      MYSQL_HOST: ms_create_events_db
+  ms_create_events:
+    build: .
+    command: bash -c "sleep 40 && rm -f tmp/pids/server.pid && bundle exec rails db:migrate && bundle exec rails s -p 3006 -b '0.0.0.0'"
+    ports:
+      - "3006:3006"
+    depends_on:
+      - ms_create_events_db
