@@ -42,34 +42,34 @@ class EventmsController < ApplicationController
       render json: @eventm.errors, status: :unprocessable_entity
     end
   end
-
+  
   # DELETE /eventms/1
   def destroy
     @eventm.destroy
+    #    respond_to do |format|
+    #	format.html {redirect_to eventms_path, notice: 'Event was destroyed'}
+    #	format.json {head :no_content}
+    #   end
   end
-  
+
   #def createPostLogin
-    #@eventm = Eventm.new(eventm_params)
-    #respond_to do |format|
-      #if @eventm.save
-        #EventUser.create!(eventm_id: @eventm.id, user_id: current_user.id)
+  #@eventm = Eventm.new(eventm_params)
+  #respond_to do |format|
+  #if @eventm.save
+  #EventUser.create!(eventm_id: @eventm.id, user_id: current_user.id)
 
-        #format.html { redirect_to @eventm, notice: 'Event was successfully created.' }
-        #format.json{ render :show, status: :created, location: @eventm}
+  #format.html { redirect_to @eventm, notice: 'Event was successfully created.' }
+  #format.json{ render :show, status: :created, location: @eventm}
 
-      #else
-        # format.html { render :new }
-        # format.json { render json: @eventm.errors, status: :unprocessable_entity }
+  #else
+  # format.html { render :new }
+  # format.json { render json: @eventm.errors, status: :unprocessable_entity }
 
-      #end
-
-    #end
   #end
 
-  def checkEvent(id)
-    results = HTTParty.get("http://192.168.99.101:3006/eventm/" + id.to_s)
-    return results
-  end
+  #end
+  #end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.

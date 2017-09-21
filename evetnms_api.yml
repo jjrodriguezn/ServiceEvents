@@ -1,0 +1,229 @@
+#Test with: http://editor.swagger.io/
+
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Eventms Microservice
+  description: Ruby + MySQL Database
+  contact:
+      name: Equipo E1
+      email: jjrodriguezn@unal.edu.co
+  license:
+    name: Software Architecture 2017-II
+host: 192.168.99.101:3006
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /eventms:
+    post:
+      summary: Creates a new event
+      operationId: createEventm
+      parameters:
+        - name: eventm
+          in: body
+          required: true
+          description: Eventm Object
+          schema:
+            $ref: '#/definitions/Eventm'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    get:
+      summary: Returns all events
+      operationId: getAllEventms
+      parameters:
+        - name: firstResult
+          in: query
+          description: The first result to return
+          required: false
+          type: integer
+        - name: maxResult
+          in: query
+          description: The maximum number of results to return
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/EventmsList'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /eventms/{id}:
+    get:
+      summary: Returns a event with the given id
+      operationId: getEventmById
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user to be returned
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Eventm'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    put:
+      summary: Updates a event with the given id
+      operationId: updateEventm
+      parameters:
+        - name: id
+          in: path
+          description: The id of the event to be updated
+          required: true
+          type: string
+        - name: eventm
+          in: body
+          required: true
+          description: Eventm Object
+          schema:
+            $ref: '#/definitions/EventmWithoutId'
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    delete:
+      summary: Deletes a event with the given id
+      operationId: deleteEventm
+      parameters:
+        - name: id
+          in: path
+          description: The id of the event to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+definitions:
+# Products
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+      Name:
+        type: string
+      Description:
+        type: string
+      Address:
+        type: string
+      Phone:
+        type: string
+      StartTime:
+        type: datetime
+      EndTIme:
+        type: datetime
+      Latitude:
+        type: float
+      Longitude:
+        type: float
+      OwnerId:
+        type: integer
+
+  EventmWithoutId:
+    type: object
+    properties:
+      Name:
+        type: string
+      Description:
+        type: string
+      Address:
+        type: string
+      Phone:
+        type: string
+      StartTime:
+        type: datetime
+      EndTIme:
+        type: datetime
+      Latitude:
+        type: float
+      Longitude:
+        type: float
+      OwnerId:
+        type: integer
+
+  EventmList:
+    type: object
+    required:
+      - total
+      - list
+    properties:
+      total:
+        type: number
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Eventm'
+
+# Errors
+  ErrorModel:
+    type: object
+    required:
+      - message
+      - code
+    properties:
+      message:
+        type: string
+      code:
+        type: number
+      description:
+        type: object
