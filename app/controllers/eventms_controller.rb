@@ -11,7 +11,11 @@ class EventmsController < ApplicationController
 
   # GET /eventms/1
   def show
-    render json: @eventm
+    if @eventm != nil			
+	render json: @eventm
+    else
+	render json: @eventm.errors, status: :unprocessable_entity
+    end			
   end
 
   # GET /signin/eventm/1
@@ -56,7 +60,7 @@ class EventmsController < ApplicationController
   #@eventm = Eventm.new(eventm_params)
   #respond_to do |format|
   #if @eventm.save
-  #EventUser.create!(eventm_id: @eventm.id, user_id: current_user.id)
+  #EventUser.create!(eventm_id: @eventm.id, user_id: current_user.id) no existe tabla relacional 
 
   #format.html { redirect_to @eventm, notice: 'Event was successfully created.' }
   #format.json{ render :show, status: :created, location: @eventm}
