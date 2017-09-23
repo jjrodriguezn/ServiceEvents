@@ -3,7 +3,7 @@ services:
   ms_create_events_db:
     image: mysql
     ports:
-      - "3311:3311"
+      - "4006:4006"
     environment:
       MYSQL_ROOT_PASSWORD: 123
       MYSQL_USER: arqsoft
