@@ -160,45 +160,45 @@ definitions:
     properties:
       id:
         type: integer
-      Name:
+      name:
         type: string
-      Description:
+      description:
         type: string
-      Address:
+      address:
         type: string
-      Phone:
+      phone:
         type: string
-      StartTime:
+      start_time:
         type: datetime
-      EndTIme:
+      end_time:
         type: datetime
-      Latitude:
+      latitude:
         type: float
-      Longitude:
+      longitude:
         type: float
-      OwnerId:
+      owner_id:
         type: integer
 
   EventmWithoutId:
     type: object
     properties:
-      Name:
+      name:
         type: string
-      Description:
+      description:
         type: string
-      Address:
+      address:
         type: string
-      Phone:
+      phone:
         type: string
-      StartTime:
+      start_time:
         type: datetime
-      EndTIme:
+      end_time:
         type: datetime
-      Latitude:
+      latitude:
         type: float
-      Longitude:
+      longitude:
         type: float
-      OwnerId:
+      owner_id:
         type: integer
 
   EventmList:
