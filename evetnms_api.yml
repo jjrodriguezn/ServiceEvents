@@ -155,7 +155,7 @@ paths:
 
 definitions:
 # Products
-  User:
+  Eventm:
     type: object
     properties:
       id:
